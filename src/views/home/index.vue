@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-
 </script>
 
 <template>
@@ -50,11 +49,12 @@
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style scoped>
 .container {
   width: 800px;
   margin: 0 auto;
 }
+
 .resume-section {
   border-bottom: 1px solid #d1d1d1;
   padding: 10px 0;

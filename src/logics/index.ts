@@ -1,7 +1,3 @@
-export function customMdToMd(text: string) {
-  return text
-}
-
 type NodeProps = Record<string, string> | null
 type NodeChildren = Node[] | string | null
 export interface Node {
@@ -79,4 +75,17 @@ export function parseResumeSyntax(text: string): string {
   }
   return text
 }
-
+/**
+ * 自定义语法解析成为真正渲染的markdown文件
+ */
+export function parseCustomSyntaxToMd(text: string) {
+  const newText = text.replace(/^(\?\?\?([\s\S]*?)\?\?\?)$/gm, (match) => {
+    const key = match.split(/\s+/)[0].replace('???', '')
+    if (key === 'section' || key === 'item') {
+      const parseStr = parseResumeSyntax(match)
+      return parseStr
+    }
+    return match
+  })
+  return newText
+}

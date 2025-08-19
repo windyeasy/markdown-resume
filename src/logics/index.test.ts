@@ -1,36 +1,9 @@
 import type { Node } from '.'
 import { describe, expect, it } from 'vitest'
 import { createNode, parseNodeToElString, parseResumeSyntax } from '.'
+
 // 一行行的匹配，使用python里面的方式，效率慢一点就慢一点
-// const testText = `
-// ???section
-// 职业技能
-// ???
-
-// ### 测试内容
-
-// 这是一段测试内容
-
-// ???section 职业技能2???
-// `
-// const result = `
-// <section class="resume-section">
-//   <div class="sec-title">
-//     职业技能
-//   </div>
-// </section>
-
-// ### 测试内容
-
-// 这是一段测试内容
-
-// <section class="resume-section">
-//   <div class="sec-title">
-//     职业技能2
-//   </div>
-// </section>
-// `
-describe('customMdToMd', () => {
+describe('logics', () => {
   describe('createNode', () => {
     it('should create node', () => {
       const node = createNode('div', { class: 'test' }, [createNode('span', {}, 'test')])
