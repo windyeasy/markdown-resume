@@ -1,0 +1,80 @@
+/* profile */
+.profile {
+  display: flex;
+  justify-content: space-between;
+
+}
+
+.job-info, .basic-item {
+  display: flex;
+}
+
+.profile .avatar {
+  width: 80px;
+  height: 80px;
+  background: #d1d1d1;
+  border-radius: 50%;
+  margin-right: 20px;
+}
+
+.profile .name {
+  font-size: 26px;
+  font-weight: bold;
+  line-height: 1.5;
+  padding: 10px 0 4px;
+}
+
+.profile .job {
+  font-size: 16px;
+}
+
+/* basic_info */
+.basic-info  {
+  font-size: 14px;
+  padding: 4px 0 2px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.basic-item {
+  margin-right: 8px;
+}
+
+.item-wrapper {
+  display: flex;
+}
+
+.basic-item  .item-content  {
+  margin-left: 4px;
+}
+
+.item-icon {
+  width: 16px;
+  height: 16px;
+  background: pink;
+}
+
+
+
+/* resume-section */
+.resume-section {
+  border-bottom: 1px solid #d1d1d1;
+  padding: 10px 0;
+  margin: 10px 0;
+}
+
+.resume-section .sec-title {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.resume-item {
+  display: flex;
+  justify-content: space-between;
+}
+
+.resume-content-title {
+  font-weight: bold;
+  font-size: 16px;
+  margin: 10px 0 5px;
+}

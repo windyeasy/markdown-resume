@@ -1,0 +1,32 @@
+
+
+???section
+职业技能
+???
+
+???item
+杭州阅读科技有限公司
+2023/02-至今
+???
+
+???ctitle
+前端组长
+???
+
+
+
+todo:
+
+1. 中括号配置icon
+通过开源库实现图标
+???section<book>
+职业技能
+???
+
+解析的逻辑：
+startIndex =0
+endIndex = 100
+const section = text.substring(startIndex, endIndex)
+const newText = text[startIndex: endIndex]
+const
+???section ???
