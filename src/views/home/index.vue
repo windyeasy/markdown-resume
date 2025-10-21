@@ -1,17 +1,67 @@
 <script lang="ts" setup>
+// import Resume from '../../resumes/resume.md'
 </script>
 
 <template>
   <div class="container">
     <!-- info -->
     <div class="profile">
-      <div class="job">
-        前端工程师
+      <div class="job-info">
+        <img class="avatar">
+        <div>
+          <div class="name">
+            利威尔
+          </div>
+          <div class="job">
+            前端工程师
+          </div>
+        </div>
       </div>
-      <div class="name">
-        利威尔
+      <div class="basic-info">
+        <div class="basic-item">
+          <!-- <div class="item-title">
+            手机:
+          </div> -->
+          <a class="item-wrapper">
+            <img class="item-icon">
+            <text class="item-content">
+              +86 1234567890
+            </text>
+          </a>
+        </div>
+        <div class="basic-item">
+          <span class="item-wrapper">
+            <text class="item-title">
+              学历:
+            </text>
+            <text class="item-content">
+              大专
+            </text>
+          </span>
+        </div>
+        <div class="basic-item">
+          <span class="item-wrapper">
+            <text class="item-title">
+              邮箱:
+            </text>
+            <text class="item-content">
+              27777777777@qq.com
+            </text>
+          </span>
+        </div>
+        <div class="basic-item">
+          <span class="item-wrapper">
+            <text class="item-title">
+              邮箱:
+            </text>
+            <text class="item-content">
+              27777777777@qq.com
+            </text>
+          </span>
+        </div>
       </div>
     </div>
+
     <!-- resume-section -->
     <section class="resume-section">
       <div class="sec-title">
@@ -49,31 +99,11 @@
   </div>
 </template>
 
-<style scoped>
+<style>
 .container {
   width: 800px;
-  margin: 0 auto;
-}
-
-.resume-section {
-  border-bottom: 1px solid #d1d1d1;
-  padding: 10px 0;
-  margin: 10px 0;
-}
-
-.resume-section .sec-title {
-  font-weight: bold;
-  font-size: 18px;
-}
-
-.resume-item {
-  display: flex;
-  justify-content: space-between;
-}
-
-.resume-content-title {
-  font-weight: bold;
-  font-size: 16px;
-  margin: 10px 0 5px;
+  margin: 20px auto;
+  border: 1px solid #d1d1d1;
+  padding: 20px;
 }
 </style>
