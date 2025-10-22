@@ -1,7 +1,8 @@
-import type { Node } from '.'
+import type { Node, ResumeMainInfo } from '.'
 import { describe, expect, it } from 'vitest'
-import { createNode, parseCustomSyntaxToMd, parseNodeToElString, parseResumeSyntax } from '.'
+import { createNode, parseCustomSyntaxToMd, parseMainInfoToHtml, parseNodeToElString, parseResumeSyntax } from '.'
 
+// todo: 后面优化测试用例
 describe('logics', () => {
   describe('createNode', () => {
     it('should create node', () => {
@@ -22,6 +23,7 @@ describe('logics', () => {
     })
   })
   describe('parseNodeToElString', () => {
+    // todo: 通过我定义的方法多一个空格需要优化
     it('should parse node to string', () => {
       const node: Node = {
         tag: 'section',
@@ -96,27 +98,83 @@ describe('logics', () => {
   })
   describe('parseCustomSyntaxToMd', () => {
     const md = `
-# Resume
+    # Resume
 
-:::section
-职业技能
-:::
+    :::section
+    职业技能
+    :::
 
-:::item 杭州阅读科技有限公司 2023/02-至今 :::
-*前端组长*
-`
+    :::item 杭州阅读科技有限公司 2023/02-至今 :::
+    *前端组长*
+    `
     it('返回正确的结果', () => {
+      // todo: 修复有换行符的bug
       expect(parseCustomSyntaxToMd(md)).toMatchInlineSnapshot(`
         "
-        # Resume
+            # Resume
 
-        :::section
-        职业技能
-        :::
+            :::section
+            职业技能
+            :::
 
-        :::item 杭州阅读科技有限公司 2023/02-至今 :::
-        *前端组长*
+            :::item 杭州阅读科技有限公司 2023/02-至今 :::
+            *前端组长*
+            "
+      `)
+    })
+  })
+
+  describe('parseMainInfoToHtml', () => {
+    it('应该返回正确的html', () => {
+      const mainInfo: ResumeMainInfo = {
+        name: '张三',
+        job: '前端',
+        avatar: 'https://avatars.githubusercontent.com/u/102160226?v=4',
+        basicInfos: [
+          {
+            title: '个人网站',
+            content: 'https://www.zhangsan.com',
+          },
+          {
+            title: 'Github',
+            icon: 'github',
+            content: 'https://github.com/zhangsan',
+          },
+        ],
+      }
+
+      const result = parseMainInfoToHtml(mainInfo)
+      expect(result).toMatchInlineSnapshot(`
         "
+           <div class="profile">
+              <div class="job-info">
+                <img src="https://avatars.githubusercontent.com/u/102160226?v=4" />
+                <div>
+                  <div class="name">
+                    张三
+                  </div>
+                  <div class="job">
+                    前端
+                  </div>
+                </div>
+              </div>
+              <div class="basic-info">
+
+            <div class="basic-item">
+              <span class="item-wrapper">
+              <text class="item-title">个人网站</text><text class="item-content">https://www.zhangsan.com</text>
+            </span>
+            </div>
+
+            <div class="basic-item">
+              <span class="item-wrapper">
+              <i class="i-carbar-github"></i><text class="item-content">https://github.com/zhangsan</text>
+            </span>
+            </div>
+
+              </div>
+            </div>
+          "
       `)
     })
   })

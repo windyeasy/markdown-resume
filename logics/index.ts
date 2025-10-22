@@ -1,5 +1,7 @@
+import yaml from 'js-yaml'
+
 type NodeProps = Record<string, string> | null
-type NodeChildren = Node[] | string | null
+type NodeChildren = Node[] | string | number | null | undefined
 export interface Node {
   el?: HTMLElement
   tag: string
@@ -27,7 +29,7 @@ function propsToStr(props: NodeProps) {
     return ''
   let str = ''
   for (const key in props) {
-    str += `${key}="${props[key]}" `
+    str += `${key}="${props[key]}"`
   }
   return str
 }
@@ -35,7 +37,7 @@ function propsToStr(props: NodeProps) {
 export function parseNodeToElString(node: Node): string {
   const { tag, children, props } = node
   if (children) {
-    if (typeof children === 'string') {
+    if (typeof children === 'string' || typeof children === 'number') {
       return `<${tag} ${propsToStr(props)}>${children}</${tag}>`
     }
     if (Array.isArray(children) && children.length > 0) {
@@ -88,4 +90,74 @@ export function parseCustomSyntaxToMd(text: string) {
     return match
   })
   return newText
+}
+
+/**
+ * 解析同yml得到配置生成html
+ */
+export interface ResumeBasicInfo {
+  title?: string
+  icon?: string
+  content: string
+  link?: string
+}
+
+export interface ResumeMainInfo {
+  title: string
+  job: string
+  avatar?: string
+  basicInfos: ResumeBasicInfo[]
+}
+
+export function parseMainInfoToHtml(info: ResumeMainInfo) {
+  const imgEl = info.avatar ? `<img src="${info.avatar}" />` : ''
+  const imgNode = info.avatar ? createNode('img', { class: 'avatar', src: info.avatar }, imgEl) : null
+
+  const basicItemNodes = info.basicInfos.map((item) => {
+    const itemWrapperInnerNode = [
+      createNode('span', { class: 'item-title' }, item.icon
+        ? `<i class="${item.icon}"></i>`
+        : item.title),
+      createNode('span', { class: 'item-content' }, item.content),
+    ]
+
+    const itemWrapperNode = item.link
+      ? createNode('a', { class: 'item-wrapper', href: item.link }, itemWrapperInnerNode)
+      : createNode('span', { class: 'item-wrapper' }, itemWrapperInnerNode)
+
+    return createNode('div', { class: 'basic-item' }, [
+      itemWrapperNode,
+    ])
+  })
+  const jobInfoNode = createNode('div', { class: 'job-info' }, [
+    createNode('div', null, [
+      createNode('div', { class: 'name' }, info.title),
+      createNode('div', { class: 'job' }, info.job),
+    ]),
+
+  ])
+  if (imgNode && Array.isArray(jobInfoNode.children)) {
+    jobInfoNode.children!.unshift(imgNode)
+  }
+
+  const profileNode = createNode('div', { class: 'profile' }, [
+    jobInfoNode,
+    createNode('div', { class: 'basic-info' }, basicItemNodes),
+  ])
+  const html = parseNodeToElString(profileNode)
+
+  return `${html}\n\n`
+}
+
+/**
+ * 解析markdown的yml to Object
+ */
+export function parseYmlToObject(md: string): Record<string, any> | null {
+  const match = md.match(/^---\n([\s\S]*?)\n---/)
+  if (match) {
+    const yamlContent = match[1]
+    const data = yaml.load(yamlContent) as Record<string, any>
+    return data
+  }
+  return null
 }

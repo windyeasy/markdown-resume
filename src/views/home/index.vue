@@ -1,9 +1,10 @@
 <script lang="ts" setup>
-// import Resume from '../../resumes/resume.md'
+import Resume from '../../resumes/resume.md'
 </script>
 
 <template>
   <div class="container">
+    <Resume />
     <!-- info -->
     <div class="profile">
       <div class="job-info">
@@ -23,7 +24,9 @@
             手机:
           </div> -->
           <a class="item-wrapper">
-            <img class="item-icon">
+            <div class="item-title">
+              <i class="i-carbon-phone" />
+            </div>
             <text class="item-content">
               +86 1234567890
             </text>

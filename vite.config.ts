@@ -1,3 +1,4 @@
+import type { ResumeMainInfo } from './logics'
 import { fileURLToPath, URL } from 'node:url'
 import vue from '@vitejs/plugin-vue'
 import UnoCSS from 'unocss/vite'
@@ -5,7 +6,7 @@ import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { defineConfig } from 'vite'
 import Markdown from 'vite-plugin-md'
-import { parseCustomSyntaxToMd } from './logics'
+import { parseCustomSyntaxToMd, parseMainInfoToHtml, parseYmlToObject } from './logics'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -15,11 +16,16 @@ export default defineConfig({
     }),
     Markdown({
       transforms: {
-        before(code) {
-          console.log(code)
-          const newCode = parseCustomSyntaxToMd(code)
-          console.log(newCode)
-          return newCode
+        before(code: string, _: string) {
+          const obj = parseYmlToObject(code) as ResumeMainInfo
+          let headMd = ''
+          if (obj) {
+            headMd = parseMainInfoToHtml(obj)
+          }
+
+          const newCode = code.replace(/^---[\s\S]*?---\s*/, headMd)
+
+          return parseCustomSyntaxToMd(newCode)
         },
       },
     }),

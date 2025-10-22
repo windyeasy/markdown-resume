@@ -30,30 +30,60 @@
 
 /* basic_info */
 .basic-info  {
-  font-size: 14px;
-  padding: 4px 0 2px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  font-size: 13px;
+  padding: 4px 0 0px;
+  width: 56%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  align-content: start;
 }
 
 .basic-item {
-  margin-right: 8px;
+  width: 50%;
+  overflow: hidden;
+  height: 24px;
+  display: flex;
+  align-items: center;
 }
 
 .item-wrapper {
   display: flex;
+  line-height: 1;
+  margin: 0;
+  padding: 0;
+}
+
+.basic-item .item-title {
+  width: 60px;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .basic-item  .item-content  {
   margin-left: 4px;
 }
 
-.item-icon {
-  width: 16px;
-  height: 16px;
-  background: pink;
+.basic-info a {
+  color: #333;
+  text-decoration: none;
+  cursor: pointer;
 }
 
+.basic-info a:hover {
+  color: #333;
+  text-decoration: none;
+}
+
+.basic-info a .item-content {
+  text-decoration: underline;
+}
+
+/* 图标样式 */
+.basic-info i {
+  display: inline-block;
+  padding: 0;
+}
 
 
 /* resume-section */
