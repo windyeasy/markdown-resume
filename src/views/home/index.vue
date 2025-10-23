@@ -1,112 +1,103 @@
 <script lang="ts" setup>
 import Resume from '../../resumes/resume.md'
+import { getPDFHtml } from './utils/embed'
+
+const resumeEl = ref<HTMLDivElement | null>(null)
+const iframeEl = ref<HTMLIFrameElement | null>(null)
+
+function getHead() {
+  const headElement = document.head
+
+  const newHead = document.createElement('head')
+  newHead.innerHTML = headElement.outerHTML
+
+  const styleElement = document.createElement('style')
+  styleElement.textContent = `
+    @page { size: A4; margin: 0mm; }
+
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #fff;
+      color: #000;
+    }
+
+    /* 打印隐藏元素 */
+    @media print {
+      .no-print { display: none; }
+    }
+    .resume-container {
+      width: 800px;
+      margin: 0px auto;
+      padding: 30px;
+      padding-top: 40px;
+      background-color: #fff;
+      box-shadow: none;
+    }
+  `
+  newHead.appendChild(styleElement)
+  return newHead.outerHTML
+}
+
+function downloadPdf() {
+  if (resumeEl.value && iframeEl.value) {
+    const resumeHtml = resumeEl.value.outerHTML
+    const iframe = iframeEl.value
+    iframe.srcdoc = getPDFHtml(getHead(), resumeHtml)
+
+    iframe.onload = () => {
+      iframe.contentWindow?.print()
+    }
+  }
+}
 </script>
 
 <template>
-  <div class="container">
-    <Resume />
-    <!-- info -->
-    <div class="profile">
-      <div class="job-info">
-        <img class="avatar">
-        <div>
-          <div class="name">
-            利威尔
-          </div>
-          <div class="job">
-            前端工程师
-          </div>
-        </div>
-      </div>
-      <div class="basic-info">
-        <div class="basic-item">
-          <!-- <div class="item-title">
-            手机:
-          </div> -->
-          <a class="item-wrapper">
-            <div class="item-title">
-              <i class="i-carbon-phone" />
-            </div>
-            <text class="item-content">
-              +86 1234567890
-            </text>
-          </a>
-        </div>
-        <div class="basic-item">
-          <span class="item-wrapper">
-            <text class="item-title">
-              学历:
-            </text>
-            <text class="item-content">
-              大专
-            </text>
-          </span>
-        </div>
-        <div class="basic-item">
-          <span class="item-wrapper">
-            <text class="item-title">
-              邮箱:
-            </text>
-            <text class="item-content">
-              27777777777@qq.com
-            </text>
-          </span>
-        </div>
-        <div class="basic-item">
-          <span class="item-wrapper">
-            <text class="item-title">
-              邮箱:
-            </text>
-            <text class="item-content">
-              27777777777@qq.com
-            </text>
-          </span>
-        </div>
-      </div>
-    </div>
+  <div class="home">
+    <header class="header">
+      <button @click="downloadPdf">
+        下载为PDF
+      </button>
+    </header>
 
-    <!-- resume-section -->
-    <section class="resume-section">
-      <div class="sec-title">
-        职业技能
-      </div>
-    </section>
-    <!-- resume-item -->
-    <div class="resume-item">
-      <div class="item-left">
-        杭州阅读科技有限公司
-      </div>
-      <div class="item-right">
-        2023/02-至今
-      </div>
+    <div ref="resumeEl" class="resume-container">
+      <Resume />
     </div>
-    <div class="content">
-      <div class="resume-content-title">
-        前端组长
-      </div>
-      <ul>
-        <li>
-          担任前端核心开发者，负责网易云音乐核心模块的开发和技术优化，采用React和
-          TypeScript。
-        </li>
-        <li>
-          担任前端核心开发者，负责网易云音乐核心模块的开发和技术优化，采用React和
-          TypeScript。
-        </li>
-        <li>
-          担任前端核心开发者，负责网易云音乐核心模块的开发和技术优化，采用React和
-          TypeScript。
-        </li>
-      </ul>
-    </div>
+    <!-- 隐藏 iframe -->
+    <iframe ref="iframeEl" style="display:none;" />
   </div>
 </template>
 
 <style>
-.container {
-  width: 800px;
-  margin: 20px auto;
-  border: 1px solid #d1d1d1;
+.header {
+  width: 820px;
+  display: flex;
+  justify-content: flex-end;
+  margin: 0 auto;
+  padding: 10px;
+  padding-right: 6px;
+}
+
+.header button {
+  margin-left: 10px;
+  border: none;
+  outline: none;
+  height: 40px;
+  line-height: 40px;
+  background-color: dodgerblue;
+  padding: 0 15px;
+  border-radius: 4px;
+  color: white;
+}
+
+.resume-container {
+  box-sizing: border-box;
+  width: 820px;
+  margin: 0px auto;
   padding: 20px;
+  padding-top: 40px;
+  background-color: #fff;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
 }
 </style>
