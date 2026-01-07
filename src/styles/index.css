@@ -1,4 +1,13 @@
 @import "custom-markdown.css";
+:root {
+  /* theme*/
+  --theme-color: #953b2c;
+  --theme-icon-color: #000;
+  --theme-line-color: gray;
+}
+
+
 body {
   background: #f5f5f5;
+  line-height: 1.4;
 }
