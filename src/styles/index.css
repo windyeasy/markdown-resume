@@ -3,7 +3,11 @@
   /* theme*/
   --theme-color: #953b2c;
   --theme-icon-color: #000;
-  --theme-line-color: gray;
+  --theme-line-color: #953b2c;
+  /* profile color */
+  --theme-profile-color: #6a7282;
+  /* profile a:hover-color */
+  --theme-profile-a-hover: #000;
 }
 
 

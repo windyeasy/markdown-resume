@@ -8,6 +8,14 @@ import { defineConfig } from 'vite'
 import Markdown from 'vite-plugin-md'
 import { parseCustomSyntaxToMd, parseMainInfoToHtml, parseYmlToObject } from './logics'
 
+function getMarkdownContent(infoLayout: string, headMd: string, newContent: string) {
+  const className = `layout-${infoLayout}`
+  if (infoLayout === 'right') {
+    return `<div class="${className}"><div class="md-resume-content">${newContent}</div>${headMd}</div>`
+  }
+  return `<div class="${className}">${headMd}<div class="md-resume-content">${newContent}</div></div>`
+}
+
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
@@ -22,10 +30,12 @@ export default defineConfig({
           if (obj) {
             headMd = parseMainInfoToHtml(obj)
           }
+          const infoLayout = obj.infoLayout || 'top'
 
-          const newCode = code.replace(/^---[\s\S]*?---\s*/, headMd)
+          const newCode = code.replace(/^---[\s\S]*?---\s*/, '')
+          const newContent = parseCustomSyntaxToMd(newCode)
 
-          return parseCustomSyntaxToMd(newCode)
+          return getMarkdownContent(infoLayout, headMd, newContent)
         },
       },
     }),

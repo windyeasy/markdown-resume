@@ -1,7 +1,21 @@
+
+/* resume-markdown-content */
+.md-resume-content {
+  padding-top: 10px;
+  padding-left: 20px;
+  padding-right: 20px
+}
 /* profile */
 .profile {
   display: flex;
   justify-content: space-between;
+  color: var(--theme-profile-color);
+}
+
+.layout-top .profile {
+   padding-top: 40px;
+  padding-left: 20px;
+  padding-right: 20px
 }
 
 .job-info, .basic-item {
@@ -17,16 +31,18 @@
 }
 
 .profile .name {
-  font-size: 26px;
+  font-size: 28px;
   font-weight: bold;
   line-height: 1.5;
   padding: 10px 0 4px;
+  color: #000;
 }
 
 .profile .job {
-  font-size: 16px;
+  font-size: 18px;
 }
 
+/* 默认布局 */
 /* basic_info */
 .basic-info  {
   font-size: 14px;
@@ -36,6 +52,8 @@
   flex-wrap: wrap;
   align-items: flex-start;
   align-content: start;
+  padding-left: 100px;
+
 }
 
 .basic-item {
@@ -46,6 +64,8 @@
   align-items: center;
 }
 
+
+
 .item-wrapper {
   display: flex;
   line-height: 1;
@@ -53,29 +73,25 @@
   padding: 0;
 }
 
-.basic-item .item-title {
-  width: 60px;
-  display: flex;
-  justify-content: flex-end;
-}
-
+/* 默认布局 */
 .basic-item  .item-content  {
   margin-left: 4px;
 }
 
 .basic-info a {
-  color: #333;
+  color: var(--theme-profile-color);
   text-decoration: none;
   cursor: pointer;
+
 }
 
 .basic-info a:hover {
-  color: #333;
+  color: var(--theme-profile-a-hover);
   text-decoration: none;
 }
 
 .basic-info a .item-content {
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 /* 图标样式 */
@@ -89,8 +105,8 @@
 /* resume-section */
 .resume-section {
   border-bottom: 1px solid var(--theme-line-color);
-  padding: 10px 0;
-  margin: 10px 0;
+  padding: 5px 0;
+  margin: 0px 0 10px;
 }
 
 .resume-section .sec-title {
@@ -115,7 +131,101 @@
 }
 
 /* ul li */
+ul {
+ margin-top: 6px;
+ margin-bottom: 6px;
+ padding-left: 30px;
+}
 li {
   padding-top: 4px;
   padding-bottom: 4px;
 }
+
+/* layout */
+.layout-left, .layout-right {
+  display: flex;
+}
+
+.layout-left .profile, .layout-right .profile {
+  width: 220px;
+  display: block;
+  border-right: 1px solid #ccc;
+}
+
+.layout-right .profile {
+  margin-right: 0px;
+  border-right: 0;
+  border-left: 1px solid #ccc;
+}
+
+/* 左侧布局 */
+ .layout-left .basic-item, .layout-right .basic-item {
+  width: 100%;
+  text-align: left;
+  padding-bottom: 8px;
+}
+
+/* 右侧布局 */
+.layout-right .job-info, .layout-left .job-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 60px;
+  position: relative;
+  z-index: 10;
+}
+
+/* layout-bg */
+.layout-right  .layout-bg, .layout-left  .layout-bg {
+  padding-bottom: 40px;
+}
+
+.layout-right .layout-bg:after,  .layout-left .layout-bg:after{
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  background: var(--theme-color);
+  border-radius: 0 0 60px 60px;
+  color: #fff;
+}
+
+.layout-right .layout-bg .name,  .layout-right .layout-bg .job{
+  color: #fff;
+  text-align: center;
+  font-size: 22px;
+}
+
+.layout-left .layout-bg .name,  .layout-left .layout-bg .job{
+  color: #fff;
+  text-align: center;
+   font-size: 22px;
+}
+
+
+.layout-right .basic-item {
+  display: block;
+}
+
+.layout-left .profile .avatar , .layout-right .profile .avatar  {
+  width: 100px;
+  height: 100px;
+  margin-right: 0px;
+  box-sizing: border-box;
+}
+
+.layout-left .basic-info, .layout-right .basic-info {
+  font-size: 12px;
+  display: block;
+  width: 200px;
+  box-sizing: border-box;
+  margin-top: 60px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+

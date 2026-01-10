@@ -105,13 +105,17 @@ export interface ResumeBasicInfo {
 export interface ResumeMainInfo {
   title: string
   job: string
+  /**
+   * 个人信息布局位置
+   * @default 'top' 个人信息默认在顶部
+   */
+  infoLayout?: 'left' | 'top' | 'right'
   avatar?: string
   basicInfos: ResumeBasicInfo[]
 }
 
 export function parseMainInfoToHtml(info: ResumeMainInfo) {
-  const imgEl = info.avatar ? `<img src="${info.avatar}" />` : ''
-  const imgNode = info.avatar ? createNode('img', { class: 'avatar', src: info.avatar }, imgEl) : null
+  const imgNode = info.avatar ? createNode('img', { class: 'avatar', src: info.avatar }, null) : null
 
   const basicItemNodes = info.basicInfos.map((item) => {
     const itemWrapperInnerNode = [
@@ -129,8 +133,9 @@ export function parseMainInfoToHtml(info: ResumeMainInfo) {
       itemWrapperNode,
     ])
   })
+  const layoutBgName = info.avatar ? '' : 'layout-bg'
   const jobInfoNode = createNode('div', { class: 'job-info' }, [
-    createNode('div', null, [
+    createNode('div', { class: layoutBgName }, [
       createNode('div', { class: 'name' }, info.title),
       createNode('div', { class: 'job' }, info.job),
     ]),
@@ -144,6 +149,7 @@ export function parseMainInfoToHtml(info: ResumeMainInfo) {
     jobInfoNode,
     createNode('div', { class: 'basic-info' }, basicItemNodes),
   ])
+
   const html = parseNodeToElString(profileNode)
 
   return `${html}\n\n`

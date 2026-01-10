@@ -95,8 +95,7 @@ function downloadPdf() {
   box-sizing: border-box;
   width: 820px;
   margin: 0px auto;
-  padding: 20px;
-  padding-top: 40px;
+
   background-color: #fff;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
 }
