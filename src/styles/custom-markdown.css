@@ -146,6 +146,10 @@ li {
   display: flex;
 }
 
+.layout-left .md-resume-content, .layout-right .md-resume-content {
+  margin-top: 10px;
+}
+
 .layout-left .profile, .layout-right .profile {
   width: 220px;
   display: block;
