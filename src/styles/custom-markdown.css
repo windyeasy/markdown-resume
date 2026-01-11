@@ -13,7 +13,7 @@
 }
 
 .layout-top .profile {
-   padding-top: 40px;
+  padding-top: 30px;
   padding-left: 20px;
   padding-right: 20px
 }
@@ -45,7 +45,7 @@
 /* 默认布局 */
 /* basic_info */
 .basic-info  {
-  font-size: 14px;
+  font-size: 13px;
   padding: 4px 0 0px;
   width: 70%;
   display: flex;
@@ -53,7 +53,6 @@
   align-items: flex-start;
   align-content: start;
   padding-left: 100px;
-
 }
 
 .basic-item {

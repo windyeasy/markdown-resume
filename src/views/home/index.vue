@@ -77,10 +77,9 @@ function downloadPdf() {
 
 .resume-container {
   box-sizing: border-box;
-  width: 820px;
+  width: 840px;
   margin: 0px auto;
-
   background-color: #fff;
-  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+  padding-bottom: 30px;
 }
 </style>

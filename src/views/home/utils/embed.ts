@@ -23,10 +23,8 @@ export function getPDFHtml(headEl: HTMLHeadElement, contentEl: HTMLDivElement) {
     .resume-container {
       width: 800px;
       margin: 0px auto;
-      padding: 30px;
-      padding-top: 40px;
       background-color: #fff;
-      box-shadow: none;
+      padding-bottom: 30px;
     }
   `
   body.appendChild(styleElement)
