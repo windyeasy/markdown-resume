@@ -1,4 +1,4 @@
-<h1 align="center">resume</h1>
+<h1 align="center">markdown-resume</h1>
 
 一个通过markdown帮助自己写简历工具，可以打包网页或者生成PDF。
 
@@ -16,6 +16,12 @@ pnpm install
 
 ```sh
 pnpm run dev
+```
+
+### 打包
+
+```sh
+pnpm run build
 ```
 
 ## 提交方法
@@ -36,4 +42,4 @@ git commit -m "feat: 添加一个新特性"
 
 ## License
 
-resume is [MIT](./LICENSE).
+markdown-resume is [MIT](./LICENSE).
