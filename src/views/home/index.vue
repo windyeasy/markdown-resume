@@ -10,43 +10,27 @@ function getHead() {
 
   const newHead = document.createElement('head')
   newHead.innerHTML = headElement.outerHTML
-
-  const styleElement = document.createElement('style')
-  styleElement.textContent = `
-    @page { size: A4; margin: 0mm; }
-
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background: #fff;
-      color: #000;
-    }
-
-    /* 打印隐藏元素 */
-    @media print {
-      .no-print { display: none; }
-    }
-    .resume-container {
-      width: 800px;
-      margin: 0px auto;
-      padding: 30px;
-      padding-top: 40px;
-      background-color: #fff;
-      box-shadow: none;
-    }
-  `
-  newHead.appendChild(styleElement)
-  return newHead.outerHTML
+  return newHead
 }
 
 function downloadPdf() {
   if (resumeEl.value && iframeEl.value) {
-    const resumeHtml = resumeEl.value.outerHTML
+    const resumeHtmlEl = resumeEl.value
     const iframe = iframeEl.value
-    iframe.srcdoc = getPDFHtml(getHead(), resumeHtml)
+    const headEl = getHead()
+
+    const htmlContent = getPDFHtml(headEl, resumeHtmlEl)
+
+    const doc = iframe.contentDocument || iframe?.contentWindow?.document
+    if (!doc)
+      return
+
+    doc.open()
+    doc.write(htmlContent)
+    doc.close()
 
     iframe.onload = () => {
+      iframe.contentWindow?.focus()
       iframe.contentWindow?.print()
     }
   }
@@ -69,7 +53,7 @@ function downloadPdf() {
   </div>
 </template>
 
-<style>
+<style scoped>
 .header {
   width: 820px;
   display: flex;

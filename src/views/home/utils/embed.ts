@@ -1,11 +1,36 @@
-export function getPDFHtml(headInner: string, bodyInner: string) {
-  const html = `
-   <html>
-       ${headInner}
-        <body>
-          ${bodyInner}
-        </body>
-      </html>
+export function getPDFHtml(headEl: HTMLHeadElement, contentEl: HTMLDivElement) {
+  const html = document.createElement('html')
+  const body = document.createElement('body')
+
+  body.innerHTML = contentEl.outerHTML
+
+  const styleElement = document.createElement('style')
+  styleElement.textContent = `
+    @page { size: A4; margin: 0mm; }
+
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #fff;
+      color: #000;
+    }
+
+    /* 打印隐藏元素 */
+    @media print {
+      .no-print { display: none; }
+    }
+    .resume-container {
+      width: 800px;
+      margin: 0px auto;
+      padding: 30px;
+      padding-top: 40px;
+      background-color: #fff;
+      box-shadow: none;
+    }
   `
-  return html
+  body.appendChild(styleElement)
+  html.appendChild(headEl)
+  html.appendChild(body)
+  return html.outerHTML
 }
