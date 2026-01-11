@@ -133,13 +133,18 @@ export function parseMainInfoToHtml(info: ResumeMainInfo) {
       itemWrapperNode,
     ])
   })
+
+  // 添加个人资料标签
+  if (info.infoLayout === 'left' || info.infoLayout === 'right') {
+    const infoTitleNode = createNode('div', { class: 'basic-info-title' }, '个人资料')
+    basicItemNodes.unshift(infoTitleNode)
+  }
   const layoutBgName = info.avatar ? '' : 'layout-bg'
   const jobInfoNode = createNode('div', { class: 'job-info' }, [
     createNode('div', { class: layoutBgName }, [
       createNode('div', { class: 'name' }, info.title),
       createNode('div', { class: 'job' }, info.job),
     ]),
-
   ])
   if (imgNode && Array.isArray(jobInfoNode.children)) {
     jobInfoNode.children!.unshift(imgNode)
