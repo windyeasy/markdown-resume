@@ -1,5 +1,6 @@
 <script lang="ts" setup>
-import Resume from '../../resumes/resume.md'
+// import Resume from '../../resumes/resume.md'
+import Resume from '../../resumes/resume-template.md'
 import { getPDFHtml } from './utils/embed'
 
 const resumeEl = ref<HTMLDivElement | null>(null)
