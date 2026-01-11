@@ -1,18 +1,18 @@
 ---
 title: Windyeasy
 job: 前端工程师
-infoLayout: top
-avatar: https://avatars.githubusercontent.com/u/61036672?v=4&size=64
+infoLayout: right
+avatar: "/vite.svg"
 basicInfos:
   - title: 电话
     icon: i-carbon-phone
-    content: 18586856279
+    content: 1858xxxxxx9
   - title: 工作经验
     icon: i-carbon:home
     content: 4年工作经验
   - title: github
     icon: i-carbon-logo-github
-    content: https://github.com/windyeasy
+    content: windyeasy
     link: https://github.com/windyeasy
   - title: email
     icon: i-carbon-email
