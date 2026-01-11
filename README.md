@@ -52,7 +52,9 @@
 
 ![](./assets/demos/demo8.png)
 
-##
+## 简易主题定制
+
+![](./assets/demos/demo10.png)
 
 ## 运行项目
 

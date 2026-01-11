@@ -2,7 +2,8 @@
 title: Windyeasy
 job: 前端工程师
 infoLayout: right
-avatar: "/vite.svg"
+# avatar: "/vite.svg"
+avatar: https://avatars.githubusercontent.com/u/61036672?v=4&size=64
 basicInfos:
   - title: 电话
     icon: i-carbon-phone
