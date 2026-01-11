@@ -81,6 +81,6 @@ function downloadPdf() {
   width: 840px;
   margin: 0px auto;
   background-color: #fff;
-  padding-bottom: 30px;
+  padding-bottom: 0;
 }
 </style>

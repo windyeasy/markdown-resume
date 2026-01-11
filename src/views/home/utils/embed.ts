@@ -24,7 +24,7 @@ export function getPDFHtml(headEl: HTMLHeadElement, contentEl: HTMLDivElement) {
       width: 800px;
       margin: 0px auto;
       background-color: #fff;
-      padding-bottom: 30px;
+      padding-bottom: 0px;
     }
   `
   body.appendChild(styleElement)

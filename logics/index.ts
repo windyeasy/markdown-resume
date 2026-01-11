@@ -50,7 +50,7 @@ export function parseNodeToElString(node: Node): string {
 /**
  * 解析自定义的语法, 正确的语法输出正确的element节点
  * @param text  待解析的文本
- * @returns
+ * @returns 得到的markdown字符串
  */
 export function parseResumeSyntax(text: string): string {
   const texts = text.trim().split(/\s+/)
