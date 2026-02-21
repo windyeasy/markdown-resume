@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-// import Resume from '../../resumes/resume.md'
 import Resume from '../../resumes/resume-template.md'
 import { getPDFHtml } from './utils/embed'
 
@@ -56,7 +55,7 @@ function downloadPdf() {
 
 <style scoped>
 .header {
-  width: 820px;
+  width: 870px;
   display: flex;
   justify-content: flex-end;
   margin: 0 auto;
@@ -78,7 +77,7 @@ function downloadPdf() {
 
 .resume-container {
   box-sizing: border-box;
-  width: 840px;
+  width: 870px;
   margin: 0px auto;
   background-color: #fff;
   padding-bottom: 0;

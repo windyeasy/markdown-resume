@@ -147,7 +147,7 @@ li {
 }
 
 .layout-left .profile, .layout-right .profile {
-  width: 220px;
+  width: 250px;
   display: block;
   border-right: 1px solid #ccc;
 }
@@ -221,7 +221,7 @@ li {
 .layout-left .basic-info, .layout-right .basic-info {
   font-size: 12px;
   display: block;
-  width: 200px;
+  width: 220px;
   box-sizing: border-box;
   margin-top: 40px;
   padding-left: 15px;
